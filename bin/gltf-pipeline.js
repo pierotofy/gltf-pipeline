@@ -93,6 +93,63 @@ var argv = require('yargs')
             group: 'Options: Ambient Occlusion',
             nargs: 1,
             type: 'string'
+        },
+        'mc.enable': {
+            describe: 'Existing primitive materials will be replaced using the KHR_materials_common extension.',
+            group: 'Options: Materials Common',
+            type: 'boolean'
+        },
+        'mc.materialType': {
+            choices: ['blinn', 'phong', 'lambert', 'constant'],
+            default: 'blinn',
+            describe: 'The material type to use for KHR_materials_common.',
+            group: 'Options: Materials Common',
+            nargs: 1,
+            type: 'string'
+        },
+        'mc.lightType': {
+            choices: ['directional', 'point', 'spot', 'ambient'],
+            default: 'directional',
+            describe: 'The light type to use for KHR_materials common.',
+            group: 'Options: Materials Common',
+            nargs: 1,
+            type: 'string'
+        },
+        'mc.ambient': {
+            describe: 'RGBA value for ambient light reflected from the surface of the object.',
+            group: 'Options: Materials Common'
+        },
+        'mc.diffuse': {
+            describe: 'RGBA value or texture ID defining the amount of light diffusely reflected from the surface of the object',
+            group: 'Options: Materials Common'
+        },
+        'mc.doubleSided': {
+            describe: 'Declares whether backface culling should be disabled for this visual.',
+            group: 'Options: Materials Common',
+            type: 'boolean'
+        },
+        'mc.emission': {
+            describe: 'RGBA value or texture ID for light emitted by the surface of the object.',
+            group: 'Options: Materials Common'
+        },
+        'mc.specular': {
+            describe: 'RGBA value or texture ID defining the color of light specularly reflected from the surface of the object.',
+            group: 'Options: Materials Common'
+        },
+        'mc.shininess': {
+            describe: 'Defines the specularity or roughness of the specular reflection lobe of the object.',
+            group: 'Options: Materials Common',
+            type: 'number'
+        },
+        'mc.transparency': {
+            describe: 'Declares the amount of transparency as an opacity value between 0.0 and 1.0',
+            group: 'Options: Materials Common',
+            type: 'number'
+        },
+        'mc.transparent': {
+            describe: 'Declares whether the visual should be rendered using alpha blending.',
+            group: 'Options: Materials Common',
+            type: 'boolean'
         }
     })
     .argv;
@@ -147,6 +204,7 @@ var options = {
     encodeNormals : argv.n,
     compressTextureCoordinates : argv.c,
     aoOptions : argv.ao,
+    mcOptions : argv.mc,
     optimizeForCesium : argv.cesium
 };
 
