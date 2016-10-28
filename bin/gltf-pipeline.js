@@ -103,8 +103,11 @@ for (var i = 0; i < nargs; i++) {
     }
 }
 
-var gltfPath = defaultValue(argv.i, argv._[0]);
+var inputPath = defaultValue(argv.i, argv._[0]);
 var outputPath = defaultValue(argv.o, argv._[1]);
+
+var fileExtension = path.extname(inputPath);
+
 
 if (!defined(outputPath)) {
     var outputFileExtension;
